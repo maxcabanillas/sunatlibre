@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>Test</title>
+</head>
+<body>
+  <div id="foobar"></div>
+  <form>
+    <input name="foo">
+    <select name="bar"></select>
+    <input id="i_have_an_id" name="lalala">
+    <input name="foobar">
+  </form>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="sunatlibre.js"></script>
+  <script>
+    console.debug($('input[name="foo"]').length === 1);
+    console.debug($('select[name="bar"]').length === 1);
+    console.debug($('input[name="lalala"]').length === 1);
+    console.debug($('input[name="lalala"]').attr('id') === 'i_have_an_id');
+    console.debug(!!$('input[name="foobar"]').attr('id') === false);
+  </script>
+</body>
+</html>
