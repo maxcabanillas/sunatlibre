@@ -10,7 +10,7 @@ https://chrome.google.com/webstore/detail/sunat-libre/ghmbjblenlcniekjmnopgofmcn
 
 # Como funciona
 
-El código JavaScript de la página de la SUNAT enceuntra los elementos en los formularios usando la función "document.getElementById" y su atributo "name", en vez del atributo "id". Esto funciona solamente por accidente gracias a un error de las versiones antiguas de Internet Explorer.
+El código JavaScript de la página de la SUNAT encuentra los elementos en los formularios usando la función "document.getElementById" y su atributo "name", en vez del atributo "id". Esto funciona solamente por accidente gracias a un error de las versiones antiguas de Internet Explorer.
 
 Los navegadores modernos, incluyendo Internet Explorer 9 y 10 ya no tienen ese error y por eso muchas veces el sitio tampoco funciona sin "modo de compatibilidad".
 
