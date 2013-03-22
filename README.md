@@ -9,7 +9,7 @@ https://chrome.google.com/webstore/detail/sunat-libre/ghmbjblenlcniekjmnopgofmcn
 
 ## No solo para la SUNAT
 
-Gracias a wixo, ahora puede usarse como bookmarklet en cualquier sitio con problemas similares.
+Gracias a [wixo](https://github.com/wixo), ahora puede usarse como bookmarklet en cualquier sitio con problemas similares.
 Solo arrastra este enlace:
 
 <a href="javascript:(function(d){var c,b,e,f,a;e=d.forms;for(c=0;b=e[c];c++){f=b.elements;for(b=0;a=f[b];b++)''!==a.id||(!a.name||d.getElementById(a.name))||(a.id=a.name)}})(window.document);">Sunat Libre</a>
