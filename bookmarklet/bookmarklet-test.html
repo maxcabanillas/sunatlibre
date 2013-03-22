@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookmarklet Test</title>
+</head>
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 50px;
+  }
+  code {white-space:pre;} 
+  code:after {content: '\A';}
+  .result:after {content: ' -';}
+  .result:before {content: '- ';}
+  span[data-result="false"] {
+    background: #eed3d7;
+    color: #b94a48;
+  }
+  span[data-result="true"] {
+    background: #dff0d8;
+    color: #468847;
+  }
+  #sunat-libre {
+    background: #ccc;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    display: block;
+    margin: 0 3px 9px;
+    padding: 2px;
+    text-align: center;
+    text-decoration: none;
+    width: 200px;
+  }
+  .test {
+    text-transform: capitalize;
+  }
+</style>
+<body>
+  
+  <h1>Tests para el bookmarklet de Sunatlibre</h1>
+
+  <p>Arrastre el siguiente botón a su barra de marcadores para crear el bookmarklet.</p>
+  <p>Luego haga click en el bookmarklet y corra los tests de nuevo.</p>
+
+  <a href="javascript:javascript:(function(d){var c,b,e,f,a;e=d.forms;for(c=0;b=e[c];c++){f=b.elements;for(b=0;a=f[b];b++)''!==a.id||(!a.name||d.getElementById(a.name))||(a.id=a.name)}})(window.document)" id="sunat-libre">Sunat Libre</a>
+
+  <div id="foobar"></div>
+  <form>
+    <input name="foo">
+    <select name="bar"></select>
+    <input id="i_have_an_id" name="lalala">
+    <input name="foobar">
+  </form>
+
+  <span class="result" data-result=""></span> : <code>!!$('input[id="foo"][name="foo"]').length</code>
+  <span class="result" data-result=""></span> : <code>!!$('select[id="bar"][name="bar"]').length</code>
+  <span class="result" data-result=""></span> : <code>!!$('input[name="lalala"]').length</code>
+  <span class="result" data-result=""></span> : <code>$('input[name="lalala"]').attr('id') === 'i_have_an_id'</code>
+  <span class="result" data-result=""></span> : <code>!!$('input[name="foobar"]').attr('id') === false</code>
+
+  <button class="test">test</button>
+
+  <p>Resultado total:</p>
+  <span class="total"></span>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+  <script>
+    var results = document.querySelectorAll('span.result')
+      , tests   = []
+      , total   = false
+      , runTests
+      , phrase
+      ;
+
+    runTests = function () {
+      tests[0] = !!$('input[id="foo"][name="foo"]').length;
+      tests[1] = !!$('select[id="bar"][name="bar"]').length;
+      tests[2] = !!$('input[name="lalala"]').length;
+      tests[3] = $('input[name="lalala"]').attr('id') === 'i_have_an_id';
+      tests[4] = !!$('input[name="foobar"]').attr('id') === false;
+
+      return tests.every( function (e) { return e } );
+    }
+
+    phrase = function ( result ) {
+      return result ? 'pasó' : 'no pasó';
+    }
+
+    $('button.test').on('click', function() {
+
+      total = runTests();
+
+      $(results[0]).empty().attr( 'data-result', tests[0] ).text( phrase( tests[0] ) );
+      $(results[1]).empty().attr( 'data-result', tests[1] ).text( phrase( tests[1] ) );
+      $(results[2]).empty().attr( 'data-result', tests[2] ).text( phrase( tests[2] ) );
+      $(results[3]).empty().attr( 'data-result', tests[3] ).text( phrase( tests[3] ) );
+      $(results[4]).empty().attr( 'data-result', tests[4] ).text( phrase( tests[4] ) );
+
+      $('span.total').empty().attr( 'data-result', total ).text( phrase( total ) );
+    });
+
+    $('button.test').click();
+  </script>
+
+</body>
+</html>
